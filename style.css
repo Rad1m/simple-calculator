@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.container p {
+  text-align: center;
+  font-size: 130px;
+}
+
+.container button {
+  font-size: 50px;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+}
+
+.container button:hover {
+  background: rgb(201, 85, 85);
+  cursor: pointer;
+}
