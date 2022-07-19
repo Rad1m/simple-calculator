@@ -69,25 +69,28 @@ impl Component for CounterComponent {
                 let first: f64;
                 let second: f64;
                 let result: f64;
-                if self.display_number.contains("+") {
+                if self.display_number.contains("+") && self.sign {
                     let strings: Vec<&str> = self.display_number.split("+").collect();
                     first = strings[0].parse().unwrap();
                     second = strings[1].parse().unwrap();
                     result = first + second;
                     self.display_number = result.to_string();
-                } else if self.display_number.contains("-") {
+                } else if self.display_number.contains("-") && self.sign {
+                    if self.display_number.chars().next().unwrap() == '-' {
+                        self.display_number.remove(0);
+                    }
                     let strings: Vec<&str> = self.display_number.split("-").collect();
                     first = strings[0].parse().unwrap();
                     second = strings[1].parse().unwrap();
                     result = first - second;
                     self.display_number = result.to_string();
-                } else if self.display_number.contains("x") {
+                } else if self.display_number.contains("x") && self.sign {
                     let strings: Vec<&str> = self.display_number.split("x").collect();
                     first = strings[0].parse().unwrap();
                     second = strings[1].parse().unwrap();
                     result = first * second;
                     self.display_number = result.to_string();
-                } else if self.display_number.contains("/") {
+                } else if self.display_number.contains("/") && self.sign {
                     let strings: Vec<&str> = self.display_number.split("/").collect();
                     first = strings[0].parse().unwrap();
                     second = strings[1].parse().unwrap();
@@ -153,7 +156,6 @@ impl Component for CounterComponent {
         html! {
             <div class="container">
             <div style="width:50%;text-align:center;margin-left:0">
-                <p style = "font-size: 30px">{ self.sign }</p>
                 <p>{ 
                     if !self.display_number.is_empty() && self.display_number != "0" {
                         &self.display_number
